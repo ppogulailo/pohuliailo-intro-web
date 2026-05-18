@@ -281,14 +281,29 @@ const navLinkStyle: React.CSSProperties = {
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [menuOpen]);
+  const closeMenu = () => setMenuOpen(false);
   return (
-    <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
+    <header className={`site-header${scrolled ? " is-scrolled" : ""}${menuOpen ? " menu-open" : ""}`}>
       <div
         style={{
           maxWidth: 1100,
@@ -332,7 +347,7 @@ function Header() {
         </a>
         <nav
           aria-label="Page sections"
-          style={{ display: "flex", alignItems: "center", gap: 28, fontSize: 14, fontWeight: 500 }}
+          style={{ alignItems: "center", gap: 28, fontSize: 14, fontWeight: 500 }}
           className="nav-links"
         >
           <a href="#about" style={navLinkStyle}>About</a>
@@ -367,7 +382,44 @@ function Header() {
             </span>
           </Link>
         </nav>
+
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setMenuOpen((v) => !v)}
+        >
+          <span className="nav-toggle__bar" />
+          <span className="nav-toggle__bar" />
+          <span className="nav-toggle__bar" />
+        </button>
       </div>
+
+      <div
+        className="mobile-menu-backdrop"
+        aria-hidden={!menuOpen}
+        onClick={closeMenu}
+      />
+      <nav
+        id="mobile-menu"
+        className="mobile-menu"
+        aria-label="Mobile site sections"
+        aria-hidden={!menuOpen}
+      >
+        <a href="#about" className="mobile-menu__link" onClick={closeMenu}>About</a>
+        <a href="#stack" className="mobile-menu__link" onClick={closeMenu}>Stack</a>
+        <Link href="/tutorials" className="mobile-menu__link" onClick={closeMenu}>Tutorials</Link>
+        <Link href="/case-studies" className="mobile-menu__link" onClick={closeMenu}>Case Studies</Link>
+        <Link href="/hire" className="mobile-menu__link mobile-menu__link--cta" onClick={closeMenu}>
+          Hire me
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </Link>
+      </nav>
     </header>
   );
 }
@@ -507,6 +559,16 @@ function Hero() {
           >
             Pavlo Pohuliailo<span style={{ color: "var(--color-brand)" }}>/</span>
           </h1>
+
+          <div className="hero-portrait-mobile" aria-hidden="true">
+            <div className="hero-portrait-mobile__glow" />
+            <img
+              src="/assets/hero-portrait.png"
+              alt=""
+              loading="eager"
+              decoding="async"
+            />
+          </div>
 
           <p
             className="hero-stagger hero-stagger-3"
