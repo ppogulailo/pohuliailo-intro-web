@@ -474,7 +474,16 @@ const PAGE_CSS = `
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    cursor: grab;
+    touch-action: pan-x;
   }
+  .cs-carousel__track.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+    user-select: none;
+  }
+  .cs-carousel__track.is-dragging img { pointer-events: none; }
   .cs-carousel__track::-webkit-scrollbar { display: none; }
   .cs-carousel__slide {
     flex: 0 0 100%;
@@ -781,6 +790,61 @@ function Carousel({
     return () => {
       el.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(raf);
+    };
+  }, [slides.length]);
+
+  // Pointer drag-to-scroll (mouse + touch). Trackpad horizontal swipe already
+  // works via native overflow-x scroll; this adds mouse click-and-drag.
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    let isDown = false;
+    let startX = 0;
+    let startScroll = 0;
+    let moved = 0;
+    const DRAG_THRESHOLD = 6;
+
+    const onDown = (e: PointerEvent) => {
+      if (e.button !== undefined && e.button !== 0) return;
+      if (e.pointerType === "mouse") {
+        isDown = true;
+        moved = 0;
+        startX = e.clientX;
+        startScroll = el.scrollLeft;
+        el.classList.add("is-dragging");
+      }
+    };
+    const onMove = (e: PointerEvent) => {
+      if (!isDown) return;
+      const dx = e.clientX - startX;
+      moved = Math.max(moved, Math.abs(dx));
+      el.scrollLeft = startScroll - dx;
+    };
+    const onUp = () => {
+      const wasDragging = isDown;
+      isDown = false;
+      el.classList.remove("is-dragging");
+      if (wasDragging && moved > DRAG_THRESHOLD) {
+        // Swallow the synthetic click that follows a drag so it doesn't
+        // trigger clicks on slide content.
+        const swallow = (ev: Event) => {
+          ev.preventDefault();
+          ev.stopPropagation();
+          el.removeEventListener("click", swallow, true);
+        };
+        el.addEventListener("click", swallow, true);
+      }
+    };
+
+    el.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+    return () => {
+      el.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
     };
   }, [slides.length]);
 
