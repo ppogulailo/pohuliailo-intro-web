@@ -884,7 +884,7 @@ export default function HireUI() {
                 <div>
                   <div className="contact-row__label">Email</div>
                   <div className="contact-row__value">
-                    <a href="mailto:contact@deveteria.com">contact@deveteria.com</a>
+                    <a href="mailto:pavel.pogulailo@gmail.com">pavel.pogulailo@gmail.com</a>
                   </div>
                 </div>
               </li>
