@@ -313,7 +313,7 @@ export function UpworkReviews() {
       <div className="rv-section__inner">
         <div className="rv-footer">
           <a
-            href="https://www.upwork.com/freelancers/~01c6b7d9f2eaad2563"
+            href="https://www.upwork.com/freelancers/pavlopohuliailo"
             target="_blank"
             rel="noopener noreferrer"
             className="rv-cta rv-cta--upwork"

@@ -123,12 +123,12 @@ type Social = { key: string; name: string; handle: string; descriptor: string; h
 
 const SOCIALS: Social[] = [
   { key: "youtube", name: "YouTube", handle: "@PavloPohuliailo", descriptor: "AI automation & n8n tutorials", href: "https://www.youtube.com/@PavloPohuliailo" },
-  { key: "x", name: "X", handle: "@pohuliailo", descriptor: "Build threads & ship notes", href: "https://x.com/pohuliailo" },
-  { key: "upwork", name: "Upwork", handle: "Top Rated · AI engineering", descriptor: "Top Rated AI engineering studio", href: "https://www.upwork.com/freelancers/~01c6b7d9f2eaad2563" },
-  { key: "fiverr", name: "Fiverr", handle: "/pohuliailo", descriptor: "Quick-turnaround AI gigs", href: "https://www.fiverr.com/pohuliailo" },
+  { key: "x", name: "X", handle: "@PavloPohuliailo", descriptor: "Build threads & ship notes", href: "https://x.com/PavloPohuliailo" },
+  { key: "upwork", name: "Upwork", handle: "Top Rated · AI engineering", descriptor: "Top Rated AI engineering studio", href: "https://www.upwork.com/freelancers/pavlopohuliailo" },
+  { key: "fiverr", name: "Fiverr", handle: "/pavlo_pohuliail", descriptor: "Quick-turnaround AI gigs", href: "https://www.fiverr.com/pavlo_pohuliail" },
   { key: "linkedin", name: "LinkedIn", handle: "in/pogulailopavel", descriptor: "Professional work & writing", href: "https://www.linkedin.com/in/pogulailopavel/" },
-  { key: "instagram", name: "Instagram", handle: "@pohuliailo", descriptor: "Behind-the-scenes & build process", href: "https://www.instagram.com/pohuliailo/" },
-  { key: "tiktok", name: "TikTok", handle: "@pohuliailo", descriptor: "Short-form AI tips", href: "https://www.tiktok.com/@pohuliailo" },
+  { key: "instagram", name: "Instagram", handle: "@pavlopohuliailo", descriptor: "Behind-the-scenes & build process", href: "https://www.instagram.com/pavlopohuliailo/" },
+  { key: "tiktok", name: "TikTok", handle: "@pavlopohuliailo", descriptor: "Short-form AI tips", href: "https://www.tiktok.com/@pavlopohuliailo" },
   { key: "facebook", name: "Facebook", handle: "/pohuliailo", descriptor: "Personal updates & community", href: "https://www.facebook.com/pohuliailo" },
 ];
 
@@ -1154,16 +1154,16 @@ function Follow() {
 function Footer() {
   const follow = [
     { name: "YouTube", icon: "youtube", href: "https://www.youtube.com/@PavloPohuliailo" },
-    { name: "Instagram", icon: "instagram", href: "https://www.instagram.com/pohuliailo/" },
-    { name: "TikTok", icon: "tiktok", href: "https://www.tiktok.com/@pohuliailo" },
-    { name: "X", icon: "x", href: "https://x.com/pohuliailo" },
+    { name: "Instagram", icon: "instagram", href: "https://www.instagram.com/pavlopohuliailo/" },
+    { name: "TikTok", icon: "tiktok", href: "https://www.tiktok.com/@pavlopohuliailo" },
+    { name: "X", icon: "x", href: "https://x.com/PavloPohuliailo" },
     { name: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/in/pohuliailo/" },
-    { name: "GitHub", icon: "github", href: "https://github.com/pohuliailo" },
+    { name: "GitHub", icon: "github", href: "https://github.com/ppogulailo" },
     { name: "Facebook", icon: "facebook", href: "https://www.facebook.com/pohuliailo" },
   ];
   const work: { name: string; icon: string | null; href: string; label?: string }[] = [
-    { name: "Upwork", icon: "upwork", href: "https://www.upwork.com/freelancers/~01c6b7d9f2eaad2563" },
-    { name: "Fiverr", icon: "fiverr", href: "https://www.fiverr.com/pohuliailo" },
+    { name: "Upwork", icon: "upwork", href: "https://www.upwork.com/freelancers/pavlopohuliailo" },
+    { name: "Fiverr", icon: "fiverr", href: "https://www.fiverr.com/pavlo_pohuliail" },
     { name: "Deveteria studio", icon: "deveteria", href: "https://deveteria.com" },
     { name: "Email", icon: null, href: "mailto:pavel.pogulailo@gmail.com", label: "pavel.pogulailo@gmail.com" },
   ];
@@ -1906,6 +1906,379 @@ function TerminalDemo() {
   );
 }
 
+/* ============================================================
+   Delivery — "Why my builds ship faster"
+   AI-tooling-as-leverage section: tools grid + animated metrics
+   + closing line. Sits between About and Stack.
+   ============================================================ */
+const DELIVERY_TOOLS = [
+  { name: "Claude Code", role: "Backend pair · reviews, refactors, tests", logo: "/assets/logos/claudecode-color.png", bg: "#fff" as const },
+  { name: "Codex", role: "Frontend scaffolding · components in hours", logo: "/assets/logos/codex-color.png", bg: "#fff" as const },
+  { name: "Claude Design", role: "UI iteration without a separate designer", logo: "/assets/logos/claude.svg", bg: "#fff" as const, logoPad: 6 },
+  { name: "AI Voice Agents", role: "Vapi flows · production in days", logo: "/assets/logos/vapi.svg", bg: "#fff" as const },
+  { name: "AI Agents", role: "n8n automation · agency-level glue", logo: "/assets/logos/n8n.png", bg: "#fff" as const },
+  { name: "Playwright AI", role: "E2E coverage from day one", logo: "/assets/logos/playwright.png", bg: "#fff" as const },
+];
+
+const DELIVERY_METRICS = [
+  { value: 2.5, suffix: "×", prefix: "", bar: 78, decimals: 1, label: "Faster delivery vs traditional agency timeline" },
+  { value: 40, suffix: "%", prefix: "−", bar: 60, decimals: 0, label: "Sprint time saved with Claude Code in the loop" },
+  { value: 1, suffix: "", prefix: "", bar: 92, decimals: 0, label: "Senior engineer doing the work of a small team" },
+];
+
+function easeOutCubic(t: number) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function DeliveryCounter({ value, suffix, prefix, decimals, active }: { value: number; suffix: string; prefix: string; decimals: number; active: boolean }) {
+  const [display, setDisplay] = useState(() => (active ? value : 0));
+  useEffect(() => {
+    if (!active) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplay(value);
+      return;
+    }
+    let raf = 0;
+    const start = performance.now();
+    const duration = 1200;
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      setDisplay(value * easeOutCubic(t));
+      if (t < 1) raf = requestAnimationFrame(tick);
+      else setDisplay(value);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [active, value]);
+
+  const formatted = decimals > 0 ? display.toFixed(decimals) : Math.round(display).toString();
+  return (
+    <span className="del-metric__num">
+      {prefix}
+      <span className="del-metric__digits">{formatted}</span>
+      {suffix}
+    </span>
+  );
+}
+
+function Delivery() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      setActive(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(true);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <section
+      id="delivery"
+      aria-labelledby="delivery-heading"
+      ref={sectionRef}
+      style={{
+        background: "var(--color-surface)",
+        borderTop: "1px solid var(--border-default)",
+        borderBottom: "1px solid var(--border-default)",
+        padding: "clamp(72px, 10vw, 120px) 24px",
+      }}
+    >
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <header style={{ maxWidth: 820 }}>
+          <div
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 12,
+              fontWeight: 600,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--color-muted)",
+              marginBottom: 16,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+            }}
+          >
+            AI-native delivery
+            <span style={{ color: "var(--color-brand)", padding: "0 6px" }}>/</span>
+            how I ship
+          </div>
+          <h2
+            id="delivery-heading"
+            style={{
+              margin: 0,
+              fontSize: "clamp(34px, 5vw, 52px)",
+              fontWeight: 700,
+              letterSpacing: "-0.026em",
+              lineHeight: 1.05,
+              color: "var(--color-ink)",
+              textWrap: "balance",
+            }}
+          >
+            Why my builds ship faster<span style={{ color: "var(--color-brand)" }}>/</span>
+          </h2>
+          <p
+            style={{
+              margin: "18px 0 0",
+              fontSize: 17,
+              lineHeight: 1.6,
+              color: "var(--color-body)",
+              maxWidth: "60ch",
+            }}
+          >
+            I don&apos;t just use AI — I build with it as a teammate. Tighter timelines, smaller invoices, code you can maintain.
+          </p>
+        </header>
+
+        <div className="del-grid" role="list" aria-label="AI tools I work with">
+          {DELIVERY_TOOLS.map((tool, i) => (
+            <article
+              key={tool.name}
+              role="listitem"
+              className="del-card"
+              style={{ transitionDelay: active ? `${i * 60}ms` : "0ms" }}
+              data-in={active ? "true" : "false"}
+            >
+              <span className="del-card__dot" aria-hidden="true" />
+              <div
+                className="del-card__icon"
+                style={{ background: tool.bg, padding: tool.logoPad ?? 4 }}
+                aria-hidden="true"
+              >
+                <img src={tool.logo} alt="" loading="lazy" decoding="async" />
+              </div>
+              <div className="del-card__body">
+                <div className="del-card__name">{tool.name}</div>
+                <div className="del-card__role">{tool.role}</div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="del-metrics" role="list" aria-label="Delivery metrics">
+          {DELIVERY_METRICS.map((m, i) => (
+            <div key={m.label} role="listitem" className="del-metric">
+              <DeliveryCounter value={m.value} suffix={m.suffix} prefix={m.prefix} decimals={m.decimals} active={active} />
+              <div
+                className="del-metric__bar"
+                role="progressbar"
+                aria-valuenow={m.bar}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label={m.label}
+              >
+                <span
+                  className="del-metric__fill"
+                  style={{
+                    width: active ? `${m.bar}%` : "0%",
+                    transitionDelay: active ? `${200 + i * 80}ms` : "0ms",
+                  }}
+                />
+              </div>
+              <div className="del-metric__label">{m.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="del-closing">
+          <span className="del-closing__rule" aria-hidden="true" />
+          <p className="del-closing__text">
+            <em>Net effect for you — </em>
+            <strong>senior-level output, mid-level rate</strong>
+            <em>, and an MVP timeline that beats traditional agencies by 2–3×.</em>
+          </p>
+        </div>
+      </div>
+
+      <style>{`
+        .del-grid {
+          margin-top: clamp(40px, 6vw, 56px);
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 18px;
+        }
+        @media (max-width: 880px) {
+          .del-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        }
+        @media (max-width: 560px) {
+          .del-grid { grid-template-columns: 1fr; }
+        }
+        .del-card {
+          position: relative;
+          background: var(--bg-canvas);
+          border: 1px solid var(--border-default);
+          border-radius: 14px;
+          padding: 22px;
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+          opacity: 0;
+          transform: translateY(8px);
+          transition: opacity 520ms var(--ease-out),
+                      transform 520ms var(--ease-out),
+                      border-color 200ms var(--ease-out),
+                      box-shadow 220ms var(--ease-out);
+        }
+        .del-card[data-in="true"] { opacity: 1; transform: none; }
+        .del-card:hover {
+          border-color: rgba(20, 20, 20, 0.22);
+          box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 18px rgba(11,23,41,0.06);
+        }
+        .del-card__dot {
+          position: absolute;
+          top: 14px;
+          right: 14px;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--color-success, #10A862);
+          box-shadow: 0 0 0 4px rgba(16, 168, 98, 0.12);
+          animation: del-pulse 2s ease-in-out infinite;
+        }
+        @keyframes del-pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50%      { opacity: 0.45; transform: scale(1.4); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .del-card__dot { animation: none; }
+        }
+        .del-card__icon {
+          width: 44px;
+          height: 44px;
+          flex-shrink: 0;
+          border-radius: 10px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          border: 1px solid var(--border-default);
+          box-sizing: border-box;
+        }
+        .del-card__icon img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          display: block;
+        }
+        .del-card__body {
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          padding-top: 2px;
+        }
+        .del-card__name {
+          font-family: var(--font-sans);
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: -0.012em;
+          color: var(--color-ink);
+          line-height: 1.2;
+        }
+        .del-card__role {
+          font-family: var(--font-sans);
+          font-size: 12.5px;
+          line-height: 1.45;
+          color: var(--color-muted);
+        }
+        .del-metrics {
+          margin-top: clamp(48px, 7vw, 72px);
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: clamp(20px, 4vw, 56px);
+          padding: clamp(24px, 3vw, 32px) 0 0;
+          border-top: 1px solid var(--border-default);
+        }
+        @media (max-width: 720px) {
+          .del-metrics { grid-template-columns: 1fr; gap: 28px; }
+        }
+        .del-metric {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+        .del-metric__num {
+          font-family: var(--font-mono);
+          font-size: clamp(40px, 5.5vw, 64px);
+          font-weight: 600;
+          letter-spacing: -0.03em;
+          line-height: 1;
+          color: var(--color-brand);
+          font-variant-numeric: tabular-nums;
+        }
+        .del-metric__digits { display: inline-block; }
+        .del-metric__bar {
+          position: relative;
+          width: 100%;
+          height: 4px;
+          background: var(--color-line);
+          border-radius: 999px;
+          overflow: hidden;
+        }
+        .del-metric__fill {
+          display: block;
+          height: 100%;
+          width: 0%;
+          background: linear-gradient(90deg, var(--color-brand) 0%, color-mix(in oklab, var(--color-brand) 70%, white) 100%);
+          border-radius: 999px;
+          transition: width 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .del-metric__fill { transition: none; }
+        }
+        .del-metric__label {
+          font-family: var(--font-sans);
+          font-size: 13.5px;
+          line-height: 1.45;
+          color: var(--color-body);
+          max-width: 28ch;
+        }
+        .del-closing { margin-top: clamp(56px, 7vw, 80px); }
+        .del-closing__rule {
+          display: block;
+          width: 56px;
+          height: 1px;
+          background: var(--color-line);
+          margin-bottom: 24px;
+        }
+        .del-closing__text {
+          margin: 0;
+          font-family: var(--font-sans);
+          font-size: clamp(16px, 1.8vw, 19px);
+          line-height: 1.6;
+          color: var(--color-muted);
+          max-width: 64ch;
+          text-wrap: pretty;
+        }
+        .del-closing__text em { font-style: italic; }
+        .del-closing__text strong {
+          font-style: normal;
+          font-weight: 500;
+          color: var(--color-ink);
+        }
+      `}</style>
+    </section>
+  );
+}
+
 export default function HomeUI() {
   return (
     <>
@@ -1915,6 +2288,7 @@ export default function HomeUI() {
         <ActivityMarquee />
         <Stats />
         <About />
+        <Delivery />
         <IntroVideo />
         <StackMarquee />
         <UpworkReviews />
