@@ -595,8 +595,8 @@ function Hero() {
 
           <div className="hero-stagger hero-stagger-5" style={{ marginTop: 36, display: "inline-flex", flexWrap: "wrap", alignItems: "center", gap: 12 }}>
             <a
-              href="/assets/pavlo-pohuliailo-cv.pdf"
-              download
+              href="/PavloPohuliailo.pdf"
+              download="PavelPogulailo.Senior_Software_Engineer.pdf"
               className="hero-cta hero-cta--primary"
               style={{
                 display: "inline-flex",
