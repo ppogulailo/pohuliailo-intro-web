@@ -137,6 +137,10 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-feature-settings: "ss01", "cv11";
+  /* Safety net: full-bleed sections use 100vw, which includes the vertical
+     scrollbar and would otherwise make the whole page scroll horizontally.
+     `clip` (not `hidden`) keeps position: sticky working. */
+  overflow-x: clip;
 }
 
 /* Numbers in stats/prices/durations should be tabular */

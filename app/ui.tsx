@@ -1022,7 +1022,7 @@ function Courses() {
     <section
       id="courses"
       aria-labelledby="courses-heading"
-      style={{ background: "var(--color-surface)", padding: "clamp(72px, 10vw, 112px) 0" }}
+      style={{ background: "var(--color-surface)", padding: "clamp(72px, 10vw, 112px) 0", overflowX: "clip" }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
         <div
