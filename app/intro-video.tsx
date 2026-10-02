@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const INTRO_VIDEO_ID = "e9pvT5_ZZ3M";
+const INTRO_VIDEO_ID = "YKPaSDtkk4w";
 
 export default function IntroVideo() {
   const [playing, setPlaying] = useState(false);
@@ -66,7 +66,7 @@ export default function IntroVideo() {
                 maxWidth: "56ch",
               }}
             >
-              Three minutes on who I am, what I build, and how I work with founders — straight from the camera.
+              One minute on who I am, what I build, and how I work with founders — straight from the camera.
             </p>
           </header>
 
