@@ -62,7 +62,10 @@ function ExpandableQuote({ text, color = "var(--color-ink)" }: { text: ReactNode
         <button
           type="button"
           className="rv-quote__toggle"
-          onClick={() => setOpen((v) => !v)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpen((v) => !v);
+          }}
           aria-expanded={open}
         >
           {open ? "Show less" : "Read more"}
@@ -221,6 +224,8 @@ const UPWORK_REVIEWS: UpworkReview[] = [
   },
 ];
 
+const UPWORK_PROFILE_URL = "https://www.upwork.com/freelancers/pavlopohuliailo";
+
 function UpworkReviewCard({ review, delayMs }: { review: UpworkReview; delayMs: number }) {
   const [ref, shown] = useFadeInOnce(0.15);
   return (
@@ -228,6 +233,10 @@ function UpworkReviewCard({ review, delayMs }: { review: UpworkReview; delayMs: 
       ref={ref as React.RefObject<HTMLElement>}
       className={`rv-card rv-card--upwork${shown ? " is-in" : ""}`}
       style={{ transitionDelay: `${delayMs}ms` }}
+      onClick={(e) => {
+        if ((e.target as HTMLElement).closest("a, button")) return;
+        window.open(UPWORK_PROFILE_URL, "_blank", "noopener,noreferrer");
+      }}
     >
       <div className="rv-card__top">
         <span className="rv-chip rv-chip--brand">{review.chip}</span>
@@ -252,6 +261,21 @@ function UpworkReviewCard({ review, delayMs }: { review: UpworkReview; delayMs: 
         <span className="rv-budget">{review.budget}</span>
         <span className="rv-date">{review.date}</span>
       </div>
+
+      <a
+        href={UPWORK_PROFILE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="rv-card__link"
+        aria-label={`${review.quote ? "Read this review" : "View this job"} on Upwork: ${review.title} — opens in a new tab`}
+      >
+        <img src="/assets/logos/upwork.svg" alt="" width={16} height={16} />
+        {review.quote ? "Read review on Upwork" : "View on Upwork"}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <line x1="7" y1="17" x2="17" y2="7" />
+          <polyline points="8 7 17 7 17 16" />
+        </svg>
+      </a>
     </article>
   );
 }
@@ -378,7 +402,7 @@ export function UpworkReviews() {
       <div className="rv-section__inner">
         <div className="rv-footer">
           <a
-            href="https://www.upwork.com/freelancers/pavlopohuliailo"
+            href={UPWORK_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="rv-cta rv-cta--upwork"
