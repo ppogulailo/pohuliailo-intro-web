@@ -1026,6 +1026,14 @@
     margin-left: 6px;
     line-height: 1;
   }
+  .rv-status {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-muted);
+    line-height: 1;
+    white-space: nowrap;
+  }
   .rv-card__title {
     margin: 14px 0 0;
     font-family: var(--font-sans);

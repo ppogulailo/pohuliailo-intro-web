@@ -625,6 +625,33 @@ function Hero() {
             </a>
 
             <a
+              href="https://www.upwork.com/freelancers/pavlopohuliailo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-cta hero-cta--secondary"
+              aria-label="My Upwork profile — opens Upwork in a new tab"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 10,
+                padding: "15px 20px",
+                borderRadius: 10,
+                background: "transparent",
+                color: "var(--color-ink)",
+                fontSize: 17,
+                fontWeight: 600,
+                letterSpacing: "-0.005em",
+                lineHeight: 1,
+                textDecoration: "none",
+                border: "1px solid var(--border-default)",
+                transition: "background 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out)",
+              }}
+            >
+              <img src="/assets/logos/upwork.svg" alt="" width={18} height={18} style={{ display: "block" }} />
+              My Upwork profile
+            </a>
+
+            <a
               href="https://calendly.com/pavel-pogulailo/30min"
               target="_blank"
               rel="noopener noreferrer"

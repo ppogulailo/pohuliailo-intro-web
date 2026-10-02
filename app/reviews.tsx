@@ -102,13 +102,31 @@ function Stars({ value = 5 }: { value?: number }) {
 type UpworkReview = {
   chip: string;
   title: string;
-  quote: string;
+  quote?: string;
   skills?: string[];
   budget: string;
   date: string;
+  status?: "In progress" | "Completed";
 };
 
 const UPWORK_REVIEWS: UpworkReview[] = [
+  {
+    chip: "AI · OpenAI API",
+    title: "AI Developer (OpenAI API) – Build Personalized Report System",
+    quote:
+      "Outstanding developer and true technical partner. Pavlo combines excellent technical skills with professionalism, responsiveness, and a genuine commitment to quality. He consistently delivered thoughtful solutions, communicated clearly throughout the project…",
+    budget: "$2,150",
+    date: "Apr 14 – Jul 31, 2026",
+  },
+  {
+    chip: "Full-Stack Development",
+    title: "Connect Frontend to Backend",
+    quote:
+      "Fast, super professional developer who is committed to delivering high-quality work. Communication was clear throughout the project, and the result is a fast, well-performing platform. I'm very satisfied with the…",
+    skills: ["Committed to Quality", "Solution Oriented", "Clear Communicator", "Accountable for Outcomes", "Professional"],
+    budget: "$5,200",
+    date: "Jan 20 – Jul 1, 2026",
+  },
   {
     chip: "Web App MVP",
     title: "Build Lean MVP for Crypto / Fintech SaaS Telegram WebApp",
@@ -117,6 +135,35 @@ const UPWORK_REVIEWS: UpworkReview[] = [
     skills: ["Committed to Quality", "Clear Communicator", "Detail Oriented", "Accountable for Outcomes", "Professional"],
     budget: "$4,600",
     date: "Mar 30 – Apr 27, 2026",
+  },
+  {
+    chip: "AI · SaaS",
+    title: "Saas Ai Tool",
+    quote:
+      "Super Talented, Trustworthy and intelligent in his work, would hire Pavlo again for future projects, Thank you and all the best.",
+    skills: ["Committed to Quality", "Clear Communicator"],
+    budget: "$120",
+    date: "May 20 – Jun 28, 2026",
+  },
+  {
+    chip: "Telegram Bot · MVP",
+    title: "Telegram Bot Developer for MVP",
+    skills: ["Solution Oriented", "Detail Oriented"],
+    budget: "$500",
+    date: "May 16 – Jun 19, 2026",
+  },
+  {
+    chip: "Agentic AI",
+    title: "Software Engineer, Agentic AI",
+    budget: "$760 · 25 hours · $30/hr",
+    date: "May 23 – Jun 2, 2026",
+  },
+  {
+    chip: "AI Consulting",
+    title: "30 minute consultation",
+    skills: ["Committed to Quality", "Clear Communicator", "Detail Oriented"],
+    budget: "$5",
+    date: "Apr 29 – May 16, 2026",
   },
   {
     chip: "Frontend Development",
@@ -128,31 +175,49 @@ const UPWORK_REVIEWS: UpworkReview[] = [
     date: "Jan 20 – Feb 17, 2026",
   },
   {
+    chip: "Database · Marketplace",
+    title: "Marketplace software and Database build",
+    skills: ["Database Development", "Database Architecture", "AI Marketplace", "Centralized Database"],
+    budget: "$405 · 20 hours · $30/hr",
+    date: "Sep 22, 2026 – Present",
+    status: "In progress",
+  },
+  {
+    chip: "Technical Leadership",
+    title: "Technical Director – ASAP Community",
+    budget: "$100 · 17 hours · $30/hr",
+    date: "Sep 20, 2026 – Present",
+    status: "In progress",
+  },
+  {
+    chip: "AI Implementation",
+    title: "Implement Version 1.0 – Sustaining Recovery Family Risk Assessment & Action Plan (FRAAP)",
+    skills: ["AI Implementation", "Generative AI", "AI Consulting", "AI Compliance"],
+    budget: "$1,950",
+    date: "Aug 3, 2026 – Present",
+    status: "In progress",
+  },
+  {
     chip: "Full-Stack Development",
-    title: "Connect Frontend to Backend — Ferge platform",
-    quote:
-      "Excellent engineer and a great long-term partner on a serious build. Pavlo organized the scope cleanly from day one, communicated consistently, and we genuinely trusted his technical judgment — which made delivering high-quality work much easier on our side. Feedback was always handled constructively and milestones moved on schedule. Highly recommended for any team that wants a senior full-stack engineer who treats the project like his own. We'd happily team up with Pavlo again.",
-    skills: ["Committed to Quality", "Clear Communicator", "High-Quality Work", "Accountable for Outcomes", "Trusted Partner"],
-    budget: "$4,375",
-    date: "Jan 20 – May 30, 2026",
+    title: "Connect Frontend to Backend",
+    skills: ["React", "Next.js", "Vercel", "Back-End Development", "Full-Stack Development"],
+    budget: "$1,150",
+    date: "Jun 29, 2026 – Present",
+    status: "In progress",
   },
   {
-    chip: "AI · OpenAI API",
-    title: "AI Developer (OpenAI API) — Personalized Report System",
-    quote:
-      "Great experience building our personalized report system with Pavlo. He picked up the requirements quickly, suggested better technical approaches where it mattered, and shipped a clean OpenAI integration that just works. Communication was professional and collaborative from kickoff through delivery, and timelines were respected throughout. A real pleasure to work with — we're already lining up the next collaboration.",
-    skills: ["Committed to Quality", "Detail Oriented", "Clear Communicator", "Professional"],
-    budget: "$700",
-    date: "Apr 14 – May 16, 2026",
+    chip: "AI Workflow Platform",
+    title: "Build an AI Workflow Platform with React, Node.js & Real-Time Agent Pipelines",
+    budget: "$4,000",
+    date: "Jun 7 – Jul 31, 2026",
+    status: "Completed",
   },
   {
-    chip: "Telegram Bot · MVP",
-    title: "Telegram Bot Developer for MVP",
-    quote:
-      "Fantastic engineer to work with on the MVP. Pavlo absorbed our vision quickly, kept communication tight and responsive throughout, and we trusted his judgment on the implementation details — which paid off. The scope stayed well-defined from the start, which made the whole build smooth and efficient. Feedback was constructive and the launch went off without a hitch. Would gladly work with Pavlo again on future projects — highly recommended.",
-    skills: ["Committed to Quality", "Clear Communicator", "Accountable for Outcomes", "Trusted Partner"],
-    budget: "Fixed price",
-    date: "May 16 – May 30, 2026",
+    chip: "Claude Code · Agents",
+    title: "Claude Code Specialist for Managed Agents",
+    budget: "$500",
+    date: "May 20 – Jun 2, 2026",
+    status: "Completed",
   },
 ];
 
@@ -166,12 +231,12 @@ function UpworkReviewCard({ review, delayMs }: { review: UpworkReview; delayMs: 
     >
       <div className="rv-card__top">
         <span className="rv-chip rv-chip--brand">{review.chip}</span>
-        <Stars value={5} />
+        {review.status ? <span className="rv-status">{review.status}</span> : <Stars value={5} />}
       </div>
 
       <h3 className="rv-card__title">{review.title}</h3>
 
-      <ExpandableQuote text={review.quote} />
+      {review.quote && <ExpandableQuote text={review.quote} />}
 
       {review.skills && review.skills.length > 0 && (
         <div className="rv-skills">
@@ -306,7 +371,7 @@ export function UpworkReviews() {
 
       <div ref={scrollerRef} className="rv-scroller" role="region" aria-label="Upwork reviews, scroll horizontally" tabIndex={0}>
         {UPWORK_REVIEWS.map((r, i) => (
-          <UpworkReviewCard key={r.title} review={r} delayMs={i * 100} />
+          <UpworkReviewCard key={`${r.title}-${r.date}`} review={r} delayMs={Math.min(i, 4) * 100} />
         ))}
       </div>
 
